@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
 const PORT = 3000;
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(session({
@@ -15,8 +16,7 @@ app.use(session({
 // Ruta principal
 app.get('/', (req, res) => {
   if (req.session.username) {
-    res.send(`<h1>Bienvenido, ${req.session.username}!</h1><a
-href="/logout">Cerrar sesión</a>`);
+    res.send(`<h1>Bienvenido, ${req.session.username}!</h1><a href="/logout">Cerrar sesión</a>`);
   } else {
     res.redirect('/public');
   }
@@ -26,11 +26,10 @@ href="/logout">Cerrar sesión</a>`);
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
   const users = JSON.parse(fs.readFileSync('users.json'));
-  const user = users.find(u => u.username === username && u.password
-=== password);
+  const user = users.find(u => u.username === username && u.password === password);
   if (user) {
     req.session.username = user.username;
-    res.redirect('/');
+    res.redirect('/subpaginas/bienvenida.html');
   } else {
     res.send('Usuario o contraseña incorrectos. <a href="/index.html">Intentar de nuevo</a>');
  }
