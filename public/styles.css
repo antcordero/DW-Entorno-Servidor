@@ -1,0 +1,10 @@
+body{
+    text-align: center;
+}
+
+#container{
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+
+}
