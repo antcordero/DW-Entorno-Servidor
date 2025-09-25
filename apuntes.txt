@@ -1,0 +1,6 @@
+- Levantar un servidor con nodeJS por terminal:
+	- npm init -y
+	- npm install express (levanta el servidor en local)
+	- npm install express-session body-parser
+
+	- npm (nombre del archivo .js)
