@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
   if (req.session.username) {
     res.send(`<h1>Bienvenido, ${req.session.username}!</h1><a href="/logout">Cerrar sesión</a>`);
   } else {
-    res.redirect('/public');
+    res.redirect('/public/index.html');
   }
 });
 
