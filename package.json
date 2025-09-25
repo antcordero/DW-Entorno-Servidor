@@ -1,17 +1,23 @@
 {
-  "name": "entorno-servidor",
+  "name": "dw-entorno-servidor",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antcordero/DW-Entorno-Servidor.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antcordero/DW-Entorno-Servidor/issues"
+  },
+  "homepage": "https://github.com/antcordero/DW-Entorno-Servidor#readme",
   "description": "",
   "dependencies": {
-    "body-parser": "^2.2.0",
-    "express": "^5.1.0",
-    "express-session": "^1.18.2"
+    "express": "^5.1.0"
   }
 }
