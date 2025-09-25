@@ -1,3 +1,4 @@
+/* **PRIMERA FORMA
 const express = require('express');
 const path = require('path');
  
@@ -35,4 +36,35 @@ app.get('/error', (req, res) => {
 // Iniciar servidor
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
+*/
+
+/* SEGUNDA FORMA */
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = 3000;
+
+// Servir archivos estáticos desde /public
+app.use(express.static('public'));
+
+// Ruta que procesa el formulario con GET
+app.get('/pag1', (req, res) => {
+  const numero = req.query.numero;
+  
+  //imprimir en consola el valor capturado sin necesidad de abrir el navegador
+  console.log(numero);
+
+  
+  if (['1', '2', '3', '4'].includes(numero)) {
+    res.redirect(`/pag${numero}.html`);
+  } else {
+    res.redirect('/error.html');
+  }
+  
+
+});
+
+app.listen(port, () => {
+  console.log(`Servidor escuchando en http://localhost:${port}`);
 });
