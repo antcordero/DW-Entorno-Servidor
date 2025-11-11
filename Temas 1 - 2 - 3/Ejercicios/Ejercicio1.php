@@ -21,8 +21,17 @@
         echo "Suma de los dos números (num1 = " . $num1 . ", num2 = " . $num2 . ") = " . ($num1+$num2);
 
         $encontrado = true;
-        echo "<br/>Valor booleano de la variable encontrado = " . $encontrado
+        echo "<br/>Valor booleano de la variable encontrado = " . $encontrado;
 
+        $cadenaTexto = "Curso de PHP";
+        echo "<br>Longitud de la cadena de texto = " . strlen($cadenaTexto) . "<br>";
+        echo "En minúsculas: " . strtolower($cadenaTexto) . "<br/>";
+        echo "En mayúsculas: " . strtoupper($cadenaTexto) . "<br/>";
+
+        $nombres = ["Esteban Quito", "Elsa Pato", "Aitor Menta"];
+        foreach ($nombres as $nom) {
+            echo "-> " . $nom . "<br>";
+        }
     ?>
 </body>
 </html>
