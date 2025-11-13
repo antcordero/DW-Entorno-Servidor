@@ -45,7 +45,7 @@
 
         //crear tabla con bucle while
         $filas = 0;
-        $i = 0;
+        $i = 1;
         echo "<table>";
         echo "<tr>";
         while ($filas<=5) {
