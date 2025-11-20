@@ -1,0 +1,31 @@
+Objetivo: Crear una clase que represente un producto de una tienda online, 
+asegurando la protección de sus datos y permitiendo su manipulación controlada.
+ 
+Instrucciones:
+ 
+Crea dos archivos:
+Producto.php (Aquí definirás la clase).
+index.php (Aquí usarás la clase).
+En Producto.php:
+Define una clase llamada Producto.
+
+Define dos propiedades privadas (private): $nombre y $precio.
+
+Crea un constructor (__construct) que reciba el nombre y el precio iniciales y los asigne 
+a las propiedades usando $this.
+
+Crea un método público llamado mostrarInfo() que imprima por pantalla: 
+"El producto [nombre] cuesta [precio] euros.".
+
+Crea un Getter para el nombre (getNombre).
+
+Crea un Setter para el precio (setPrecio) que permita actualizar el valor.
+
+En index.php:
+Incluye el archivo de la clase usando require_once.
+
+Instancia (crea) un objeto llamado $miProducto con los valores: "Teclado Gamer" y precio 50.
+
+Llama al método mostrarInfo().
+Cambia el precio a 45 utilizando el método setter que creaste.
+Muestra en pantalla solo el nombre del producto usando el getter.
