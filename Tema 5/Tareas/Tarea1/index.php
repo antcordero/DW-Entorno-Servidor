@@ -14,8 +14,9 @@
 
         //cambiar el precio a 45
         $objeto->setPrecio(45);
-        echo "<br>Después de la rebaja:<br>";
-        $objeto->mostrarInfo();
+        
+        //imprimir nombre usando el getter
+        echo "<br>Nombre: " . $objeto->getNombre();
     ?>
 </body>
 </html>
