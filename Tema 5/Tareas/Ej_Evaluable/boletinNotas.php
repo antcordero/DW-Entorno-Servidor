@@ -18,6 +18,8 @@
         th {
             background-color: #7a7a7aff; 
         }
+
+        
     </style>
 </head>
 <body>
@@ -76,19 +78,19 @@
             $notas = $alumno['notas'];
             $sumaNotas = array_sum($notas);
             $media = $sumaNotas / count($notas);
-            //promociona si la media es 5 o más
+            //promociona o no si la media es >= 5
             if ($media >= 5) {
-                $promociona = "Sí";
+                $promociona = "SI";
             } else {
-                $promociona = "No";
+                $promociona = "NO";
             }
-            //color para las notas
+            //dar color
             if ($media < 5) {
                 $colorMedia = "red";
             } else {
                 $colorMedia = "green";
             }
-            echo "<tr>
+          echo "<tr>
                     <td>" . $alumno['nombre'] . "</td>
                     <td>" . $alumno['grupo'] . "</td>
                     <td>" . $notas['DWECL'] . "</td>
