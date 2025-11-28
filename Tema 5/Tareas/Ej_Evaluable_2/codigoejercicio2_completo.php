@@ -1,14 +1,9 @@
 <?php
 session_start();
 
-// =================================================================
-// B A C K E N D   (Espacio para el alumno)
-// =================================================================
-
-// 1. Estructura de Datos: Array Multidimensional Asociativo [cite: 9]
-// Usar sesión para persistencia de datos
-if (!isset($_SESSION['inventario'])) {
-    $_SESSION['inventario'] = [
+//1. Estructura de datos
+if(!isset($_SESSION["inventario"])) {
+    $_SESSION["inventario"] = [
         [
             'id' => 1,
             'categoria' => 'Audio',
@@ -40,63 +35,47 @@ if (!isset($_SESSION['inventario'])) {
     ];
 }
 
-$inventario = &$_SESSION['inventario'];
+$inventario = &$_SESSION["inventario"];
 
-// Variable para controlar qué lista mostrar (si la completa o la filtrada)
 $productos_a_mostrar = $inventario;
 $mensaje = "";
 
-// 2. Funciones Personalizadas (Modularidad) [cite: 10]
-
-/**
- * Función para Insertar un nuevo producto.
- * REQUISITO: Paso por referencia para modificar el array original 
- */
 function agregarProducto(&$lista, $nombre, $categoria, $precio, $cantidad) {
-    // Validar que el precio no sea negativo y que el nombre no esté vacío [cite: 7]
+    
     if ($precio < 0 || empty(trim($nombre))) {
         return false;
     }
-    
-    // Calcular nuevo ID (máximo ID existente + 1)
+
     $max_id = 0;
     foreach ($lista as $producto) {
-        if ($producto['id'] > $max_id) {
-            $max_id = $producto['id'];
+        if ($producto["id"] > $max_id) {
+            $max_id = $producto["id"];
         }
     }
     $nuevo_id = $max_id + 1;
-    
-    // Crear el nuevo array asociativo del producto
+
     $nuevo_producto = [
-        'id' => $nuevo_id,
-        'categoria' => $categoria,
-        'nombre' => trim($nombre),
-        'precio' => floatval($precio),
-        'stock' => intval($cantidad)
+        "id" => $nuevo_id,
+        "categoria" => $categoria,
+        "nombre" => trim($nombre),
+        "precio" => floatval($precio),
+        "stock" => intval($cantidad)
     ];
-    
-    // Añadirlo al array original ($lista)
+
     $lista[] = $nuevo_producto;
     return true;
 }
 
-/**
- * Función para Buscar productos.
- * REQUISITO: Filtrar por nombre sin distinguir mayúsculas/minúsculas [cite: 5]
- */
 function buscarProducto($lista, $termino) {
     $resultados = [];
-    
-    // Si el término de búsqueda está vacío, retornar todos los productos
+
     if (empty(trim($termino))) {
         return $lista;
     }
-    
-    // Recorrer el array y buscar coincidencias
+
     foreach ($lista as $producto) {
         // Usar stripos() para búsqueda case-insensitive
-        if (stripos($producto['nombre'], $termino) !== false) {
+        if (stripos($producto["nombre"], $termino) !== false) {
             $resultados[] = $producto;
         }
     }
@@ -104,32 +83,23 @@ function buscarProducto($lista, $termino) {
     return $resultados;
 }
 
-// 3. Lógica del Formulario (Procesar POST)
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // A) Si el usuario pulsó "Añadir al Inventario" [cite: 23]
-    if (isset($_POST['accion']) && $_POST['accion'] === 'insertar') {
-        // Recoger datos del formulario
-        $nombre = $_POST['nombre'] ?? '';
-        $categoria = $_POST['categoria'] ?? '';
-        $precio = $_POST['precio'] ?? 0;
-        $cantidad = $_POST['cantidad'] ?? 0;
-        
-        // Llamar a la función agregarProducto()
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["accion"]) && $_POST["accion"] === "insertar") {
+        $nombre = $_POST["nombre"] ?? "";
+        $categoria = $_POST["categoria"] ?? "";
+        $precio = $_POST["precio"] ?? 0;
+        $cantidad = $_POST["cantidad"] ?? 0;
+
         if (agregarProducto($inventario, $nombre, $categoria, $precio, $cantidad)) {
             $mensaje = "✅ Producto añadido correctamente";
-            $productos_a_mostrar = $inventario; // Actualizar la vista
+            $productos_a_mostrar = $inventario;
         } else {
             $mensaje = "❌ Error: Precio negativo o nombre vacío";
         }
     }
-    
-    // B) Si el usuario pulsó "Filtrar Lista" [cite: 19]
-    if (isset($_POST['accion']) && $_POST['accion'] === 'buscar') {
-        // Recoger término de búsqueda
-        $termino = $_POST['termino'] ?? '';
-        
-        // Llamar a la función buscarProducto() y actualizar $productos_a_mostrar
+
+    if (isset($_POST["accion"]) && $_POST["accion"] === "buscar") {
+        $termino = $_POST["termino"] ?? "";
         $productos_a_mostrar = buscarProducto($inventario, $termino);
     }
 }
@@ -185,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="POST" action="">
                 <input type="hidden" name="accion" value="buscar">
                 <label>Nombre del producto:</label>
-                <input type="text" name="termino" placeholder="Ej: Monitor..." value="<?php echo isset($_POST['termino']) ? htmlspecialchars($_POST['termino']) : ''; ?>">
+                <input type="text" name="termino" placeholder="Ej: Monitor..." value="<?php echo isset($_POST["termino"]) ? htmlspecialchars($_POST["termino"]) : ""; ?>">
                 <button type="submit" class="btn btn-blue">Filtrar Lista</button>
                 <a href="" class="link-reset">Ver Todos</a>
             </form>
@@ -196,25 +166,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="POST" action="">
                 <input type="hidden" name="accion" value="insertar">
                 <label>Nombre Producto:</label>
-                <input type="text" name="nombre" required value="<?php echo isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : ''; ?>">
+                <input type="text" name="nombre" required value="<?php echo isset($_POST["nombre"]) ? htmlspecialchars($_POST["nombre"]) : ""; ?>">
                 
                 <label>Categoría:</label>
                 <select name="categoria">
-                    <option value="Audio" <?php echo (isset($_POST['categoria']) && $_POST['categoria'] == 'Audio') ? 'selected' : ''; ?>>Audio</option>
-                    <option value="Video" <?php echo (isset($_POST['categoria']) && $_POST['categoria'] == 'Video') ? 'selected' : ''; ?>>Video</option>
-                    <option value="Cables" <?php echo (isset($_POST['categoria']) && $_POST['categoria'] == 'Cables') ? 'selected' : ''; ?>>Cables</option>
-                    <option value="Periféricos" <?php echo (isset($_POST['categoria']) && $_POST['categoria'] == 'Periféricos') ? 'selected' : ''; ?>>Periféricos</option>
+                    <option value="Audio" <?php echo (isset($_POST["categoria"]) && $_POST["categoria"] == "Audio") ? "selected" : ""; ?>>Audio</option>
+                    <option value="Video" <?php echo (isset($_POST["categoria"]) && $_POST["categoria"] == "Video") ? "selected" : ""; ?>>Video</option>
+                    <option value="Cables" <?php echo (isset($_POST["categoria"]) && $_POST["categoria"] == "Cables") ? "selected" : ""; ?>>Cables</option>
+                    <option value="Periféricos" <?php echo (isset($_POST["categoria"]) && $_POST["categoria"] == "Periféricos") ? "selected" : ""; ?>>Periféricos</option>
                 </select>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <input type="number" name="precio" step="0.01" placeholder="Precio €" required value="<?php echo isset($_POST['precio']) ? htmlspecialchars($_POST['precio']) : ''; ?>">
-                    <input type="number" name="cantidad" placeholder="Cant." required value="<?php echo isset($_POST['cantidad']) ? htmlspecialchars($_POST['cantidad']) : ''; ?>">
+                    <input type="number" name="precio" step="0.01" placeholder="Precio €" required value="<?php echo isset($_POST["precio"]) ? htmlspecialchars($_POST["precio"]) : ""; ?>">
+                    <input type="number" name="cantidad" placeholder="Cant." required value="<?php echo isset($_POST["cantidad"]) ? htmlspecialchars($_POST["cantidad"]) : ""; ?>">
                 </div>
 
                 <button type="submit" class="btn btn-green">Añadir al Inventario</button>
             </form>
             <?php if($mensaje): ?>
-                <p class="<?php echo strpos($mensaje, '✅') !== false ? 'mensaje-exito' : 'mensaje-error'; ?>"><?php echo $mensaje; ?></p>
+                <p class="<?php echo strpos($mensaje, "✅") !== false ? "mensaje-exito" : "mensaje-error"; ?>"><?php echo $mensaje; ?></p>
             <?php endif; ?>
         </div>
     </div>
@@ -232,23 +202,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </thead>
         <tbody>
             <?php 
-            // BUCLE PARA MOSTRAR PRODUCTOS
             if (count($productos_a_mostrar) > 0) {
                 foreach ($productos_a_mostrar as $producto) {
-                    // Verificar si el stock es < 5 para aplicar la clase CSS 'alerta-stock' [cite: 4]
-                    $clase_stock = ($producto['stock'] < 5) ? 'alerta-stock' : '';
-                    $texto_stock = ($producto['stock'] < 5) ? $producto['stock'] . ' (Reponer)' : $producto['stock'] . ' u.';
+                    $clase_stock = ($producto["stock"] < 5) ? "alerta-stock" : "";
+                    $texto_stock = ($producto["stock"] < 5) ? $producto["stock"] . " (Reponer)" : $producto["stock"] . " u.";
                     
                     echo "<tr>";
-                    echo "<td>" . htmlspecialchars($producto['id']) . "</td>";
-                    echo "<td>" . htmlspecialchars($producto['categoria']) . "</td>";
-                    echo "<td>" . htmlspecialchars($producto['nombre']) . "</td>";
-                    echo "<td>" . number_format($producto['precio'], 2) . " €</td>";
+                    echo "<td>" . htmlspecialchars($producto["id"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($producto["categoria"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($producto["nombre"]) . "</td>";
+                    echo "<td>" . number_format($producto["precio"], 2) . " €</td>";
                     echo "<td class='$clase_stock'>" . $texto_stock . "</td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='5' style='text-align:center; color: #999;'>No se encontraron productos</td></tr>";
+                echo "<tr><td colspan='5 style='text-align:center; color: #999;'>No se encontraron productos</td></tr>";
             }
             ?>
         </tbody>
