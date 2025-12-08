@@ -1,0 +1,6 @@
+1. Descargar el archivo al ordenador: git clone ruta-del-repositorio.git
+2. Crear una rama de trabajo: git checkout -b mi-funcionalidad
+3. Subir cambios al repositorio: 
+    git add .
+    git commit -m "mis cambios"
+    git push -u -origin mi-funcionalidad

@@ -1,0 +1,6 @@
+Definimos las propiedades como private para que no puedan modificarse libremente desde fuera de la clase.
+Se evita la inconsistencia al cambiar un dato sin validar y se evita saltarse las reglas de la aplicación como poner datos que no corresponden.
+
+En lugar de acceder directo ($obj->propiedad), se usan los métodos públicos getter y setter
+    -   Getter: devuelve el valor con getPropiedad(), es solo para lectura.
+    -   Setter: puede cambiar el valor con setPropiedad($valor) aplicando validaciones si es necesario.
