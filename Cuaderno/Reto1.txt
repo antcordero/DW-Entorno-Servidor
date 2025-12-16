@@ -1,0 +1,5 @@
+El usuario escribe www.mitienda.com en su navegador. Los 4 pasos técnicos que ocurren hasta que se ve la web son:
+    -   Resolución DNS: el navegador consulta un servidor DNS para obtener la dirección IP del dominio. Unavez resuelto, sabe a qué servidor tiene que conectarse.
+    -   Petición HTTP:  el navegador establece una conexión TCP con la IP del servidor y envía una petición HTTP al servidor web Apache
+    -   Servidor Web Apache: el servidor Apache recibe la pertición, interpreta la URL, busca el rescurso solicitado y ejecuta el código PHP generando una respuesta con html
+    -   Renderizado: el servidor envía la respuesta HTTP al navegador, qu ela recibe, interpreta y muestra la página al usuario.

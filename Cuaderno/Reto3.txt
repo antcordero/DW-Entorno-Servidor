@@ -1,0 +1,1 @@
+Imprimirá: Son equivalentes, porque con === compara valor y tipo, string y entero no entran en el primer if, pero con == solo compara el valor y "50" y 50 los considera iguales.
