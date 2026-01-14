@@ -52,7 +52,7 @@ try {
 
     //cargar mascotas de prueba en la base de datos
     foreach ($mascotas as $m) {
-        $insertStmt->execute($autor);
+        $insertStmt->execute($m);
     }
     echo "Datos insertados correctamente en la base de datos";
 
