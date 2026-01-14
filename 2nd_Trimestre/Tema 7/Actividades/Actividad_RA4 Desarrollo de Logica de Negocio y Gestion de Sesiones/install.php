@@ -56,6 +56,11 @@ try {
     }
     echo "Datos insertados correctamente en la base de datos";
 
+    /**
+     *  EJERCICIO 4 - Ingeniería de Datos Avanzada (Relaciones N:M)
+     */
+    
+
 } catch (PDOException $excepcion) {
     echo "Error: " . $excepcion->getMessage();
 
