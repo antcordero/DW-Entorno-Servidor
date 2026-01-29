@@ -1,0 +1,91 @@
+body {
+    background: linear-gradient(135deg, #0044ff 0%, #ffffff 50%, #0044ff 100%);
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+h1, h2 {
+    font-weight: 700;
+    color: #0044ff;
+}
+
+.navbar-malaga {
+    background: linear-gradient(90deg, #0044ff 0%, #0077ff 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-malaga .navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Botones */
+.btn-malaga {
+    background-color: #0044ff;
+    color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    padding: 8px 18px;
+    font-weight: 600;
+}
+
+.btn-malaga:hover {
+    background-color: #0033cc;
+    color: #ffffff;
+}
+
+.btn-secondary {
+    border-radius: 20px;
+}
+
+.table-malaga {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table-malaga thead {
+    background-color: #0044ff;
+    color: #ffffff;
+}
+
+.table-malaga tbody tr:hover {
+    background-color: #f0f5ff;
+}
+
+.table-malaga td img {
+    border-radius: 50%;
+    border: 2px solid #0044ff;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #0044ff;
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #d0d7ff;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #0044ff;
+    box-shadow: 0 0 0 0.15rem rgba(0, 68, 255, 0.25);
+}
+
+.card-malaga {
+    border-radius: 12px;
+    border: 1px solid #d0d7ff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.table-malaga .btn-sm {
+    border-radius: 16px;
+    padding: 4px 10px;
+}
