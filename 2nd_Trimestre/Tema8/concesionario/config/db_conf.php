@@ -8,6 +8,6 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'concesionario');
+define('DB_NAME', 'concesionario_pro');
 define('MONEDA', '€'); // Configuración extra para la tienda
 ?>
