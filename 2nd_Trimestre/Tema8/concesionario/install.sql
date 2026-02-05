@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS coches (
     vendido TINYINT(1) DEFAULT 0     -- 0 = no vendido, 1 = vendido
 );
 
---ALTER TABLE coches ADD COLUMN vendido TINYINT(1) DEFAULT 0;
+-- ALTER TABLE coches ADD COLUMN vendido TINYINT(1) DEFAULT 0;
 
 -- 2. Piezas (Recambios)
 CREATE TABLE IF NOT EXISTS piezas (
@@ -52,22 +52,22 @@ CREATE TABLE IF NOT EXISTS usuarios (
     rol ENUM('admin', 'empleado') DEFAULT 'empleado'
 );
 -- DATOS DE EJEMPLO
-INSERT INTO coches (marca, modelo, precio, stock, destacado) VALUES 
-('Audi', 'A3 Sportback', 32000, 3, 1),
-('BMW', 'Serie 1', 29500, 5, 0),
-('Mercedes', 'Clase A', 35000, 2, 1);
+-- INSERT INTO coches (marca, modelo, precio, stock, destacado) VALUES 
+-- ('Audi', 'A3 Sportback', 32000, 3, 1),
+-- ('BMW', 'Serie 1', 29500, 5, 0),
+-- ('Mercedes', 'Clase A', 35000, 2, 1);
 
-INSERT INTO empleados (nombre, cargo, email, sueldo) VALUES 
-('Paco Gómez', 'Jefe Taller', 'paco@motorpro.com', 2500),
-('Laura Sanz', 'Vendedora', 'laura@motorpro.com', 1800);
+-- INSERT INTO empleados (nombre, cargo, email, sueldo) VALUES 
+-- ('Paco Gómez', 'Jefe Taller', 'paco@motorpro.com', 2500),
+-- ('Laura Sanz', 'Vendedora', 'laura@motorpro.com', 1800);
 
 -- Insertamos al Administrador inicial
 -- NOTA: Ponemos '1234', pero recuerda ejecutar 'reparar.php'
 -- para que se encripte correctamente.
 --Como os dije tenéis que abrir localhost/.../reparar.php
-INSERT INTO usuarios (nombre, email, password, rol) VALUES 
-('Administrador', 'admin@motorpro.com', '1234', 'admin');
+-- INSERT INTO usuarios (nombre, email, password, rol) VALUES 
+-- ('Administrador', 'admin@motorpro.com', '1234', 'admin');
 
 -- Insertamos un empleado de prueba (Pepe)
-INSERT INTO usuarios (nombre, email, password, rol) VALUES 
-('Pepe Vendedor', 'pepe@motorpro.com', '1234', 'empleado');
+-- INSERT INTO usuarios (nombre, email, password, rol) VALUES 
+-- ('Pepe Vendedor', 'pepe@motorpro.com', '1234', 'empleado');
